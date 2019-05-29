@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gatherlife.basics.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.gatherlife.basics.model.User">
+    <id column="id" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="salt" jdbcType="VARCHAR" property="salt" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="dept_id" property="deptId" />
+    <result column="create_by" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, name, password, salt, email, mobile, status, dept_id, create_by, create_time,
+    last_update_by, last_update_time, del_flag
+  </sql>
+  <select id="selectPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select u.*, (select d.name from sys_dept d where d.id = u.dept_id) dept_name from sys_user u
+    where del_flag = 0
+    <trim>
+      ${ew.sqlSegment}
+    </trim>
+  </select>
+</mapper>

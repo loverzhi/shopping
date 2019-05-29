@@ -1,0 +1,83 @@
+#数据库配置
+dynamic:
+  datasource:
+    #设置要动态切换的数据库，一定要是下边数据库源中的pool-name的值
+    names: slave1,slave2
+    #设置用来切换数据库的传入值，做为TargetDataSource的value，默认是slave
+    flag: slave
+  #设置默认的DB，名字要跟下面的一个pool-name一致，默认是master
+  default-db: master
+  hikari:
+    master:
+      jdbc-url: jdbc:mysql://192.168.0.211:3306/shopping_kitty?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      maximum-pool-size: 10
+      pool-name: master
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1765000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+    slave1:
+      #jdbc-url: jdbc:mysql://47.107.98.189:3306/shoping_kitty?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://192.168.0.211:3306/shopping_kitty?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      maximum-pool-size: 10
+      pool-name: slave1
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1765000
+      read-only: true
+    slave2:
+      #jdbc-url: jdbc:mysql://47.107.98.189:3306/shoping_kitty?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      jdbc-url: jdbc:mysql://192.168.0.211:3306/shopping_kitty?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+      username: root
+      password: 123456
+      maximum-pool-size: 10
+      pool-name: slave2
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1765000
+      read-only: true
+########################################################
+###LOG (LogAutoConfiguration)
+########################################################
+logging:
+  config: classpath:logback-boot.xml
+  level:
+    root: debug
+    org:
+      springframework: info
+      mybatis:
+        spring:
+          SqlSessionUtils: debug
+    cn:
+      gatherlife: info
+  file:
+    path: ./logs
+    prefix: shopping-basics
+server:
+  tomcat:
+    uri-encoding: utf-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  servlet:
+    context-path: /
+
+
+spring:
+  cross:
+    allow: http://localhost:8090,http://localhost:8091,http://localhost:8092,http://localhost:8093,http://localhost:8094,http://localhost:8095

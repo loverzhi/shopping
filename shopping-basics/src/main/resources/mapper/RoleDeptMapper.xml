@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.gatherlife.basics.mapper.RoleDeptMapper">
+  <resultMap id="BaseResultMap" type="cn.gatherlife.basics.model.RoleDept">
+    <id column="id" property="id" />
+    <result column="role_id" property="roleId" />
+    <result column="dept_id" property="deptId" />
+    <result column="create_by" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_update_by" property="lastUpdateBy" />
+    <result column="last_update_time" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_id, dept_id, create_by, create_time, last_update_by, last_update_time
+  </sql>
+
+</mapper>
