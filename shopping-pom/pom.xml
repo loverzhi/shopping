@@ -32,7 +32,7 @@
         <log4j.version>1.2.17</log4j.version>
         <kaptcha.version>0.0.9</kaptcha.version>
 
-        <mysql.version>6.0.6</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <mybatisplus.version>2.1.9</mybatisplus.version>
         <mybatisplus.spring.boot.version>1.0.5</mybatisplus.spring.boot.version>
         <pagehelper.spring.version>1.2.5</pagehelper.spring.version>
